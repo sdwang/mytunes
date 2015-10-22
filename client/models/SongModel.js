@@ -15,7 +15,8 @@ var SongModel = Backbone.Model.extend({
   },
 
   defaults: {
-    'playCount': 0
+    'playCount': 0,
+    'queuePosition': -1
   }
 
 });

@@ -24,9 +24,14 @@
 
     <script>
       $(function() {
-        var library = new Songs(songData);
-        var app = new AppModel({library: library});
+        if(window.localStorage.getItem('songs') === null){
+          console.log('songs = null');  
+          var library = new Songs(songData);   
+        } else {
+          var library = new Songs(JSON.parse(window.localStorage.getItem('songs'))); 
+        }
 
+        var app = new AppModel({library: library});
         var appView = new AppView({model: app});
 
         $('body').append(appView.render());
