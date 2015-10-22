@@ -7,6 +7,9 @@ var SongQueueView = Backbone.View.extend({
     this.collection.on('add', this.render, this);
     this.collection.on('remove', this.render, this);
     this.render();
+    /*this.collection.on('all', function() {
+      window.localStorage.setItem("songQueue", this.collection);
+    }, this);*/
   },
 
   render: function() {
@@ -16,5 +19,7 @@ var SongQueueView = Backbone.View.extend({
       })
     );
   }
+
+
 
 });

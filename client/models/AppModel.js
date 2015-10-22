@@ -22,6 +22,10 @@ var AppModel = Backbone.Model.extend({
     }, this);
 
     params.library.on('ended', function(song){
+      //window.localStorage.setItem('songs', params.library);
+      if(this.get('songQueue').at(0) === this.get('currentSong')) {
+        this.trigger('change:currentSong', this);
+      }
       if(this.get('songQueue').length === 0) {
         this.set('currentSong', new SongModel());
       } else {
