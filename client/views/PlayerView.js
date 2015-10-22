@@ -7,11 +7,9 @@ var PlayerView = Backbone.View.extend({
 
   events: {
     'ended': 'endEvent'
-    //function() {console.log('Song ended')}//dequeue, play next song on queue
   },
 
   endEvent: function(){
-    console.log('endEvent triggers');
     this.model.ended();
   },
 
