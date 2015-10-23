@@ -6,16 +6,16 @@ var SongQueueView = Backbone.View.extend({
   initialize: function() {
     //this.collection.on('add', this.render, this);
     //this.collection.on('remove', this.handleRemove, this);
-    this.render();handleAll
-    }, this);
+    this.render();
+    this.collection.on('add remove', this.handleAll, this);
   },
   
   handleAll: function(){
     this.render();
     for(var i = 0; i < this.collection.length; i++) {
       this.collection.at(i).set('queuePosition',i);
-      console.log(this.collection.at(i).get('title') + " : " + this.collection.at(i).get('queuePosition'));
     }
+    this.collection.trigger('saveLibrary', this);
   },
 
   render: function() {

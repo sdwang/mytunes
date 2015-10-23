@@ -20,16 +20,23 @@
     <script src="views/AppView.js"></script>
     <script src="views/SongQueueView.js"></script>
     <script src="views/SongQueueEntryView.js"></script>
-
+    
+    <script src="Router/AppRouter.js"></script>
 
     <script>
       $(function() {
-        if(window.localStorage.getItem('songs') === null){
-          console.log('songs = null');  
-          var library = new Songs(songData);   
-        } else {
-          var library = new Songs(JSON.parse(window.localStorage.getItem('songs'))); 
-        }
+        
+        var library = new Songs(songData);
+
+        var app_router = new AppRouter;
+
+        app_router.on('route:savedLibrary', function(){
+            if(window.localStorage.getItem('songs') !== null){
+                library = new Songs(JSON.parse(window.localStorage.getItem('songs'))); 
+            }            
+        });
+
+        Backbone.history.start();
 
         var app = new AppModel({library: library});
         var appView = new AppView({model: app});
